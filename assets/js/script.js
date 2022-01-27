@@ -36,10 +36,12 @@ const updateHistory = () => {
     let citySearch = getCities();
     cityList.innerHTML = '';
     for (a of citySearch) {
+        let li = document.createElement('li')
         let b = document.createElement('button');
             b.textContent = a.name;
             b.classList.add('cityBttn');
-            cityList.appendChild(b);
+            li.appendChild(b)
+            cityList.appendChild(li);
     }
 }
 
