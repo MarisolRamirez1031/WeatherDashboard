@@ -4,6 +4,7 @@ const weather = "weather?";
 const onecall = "onecall?";
 const currentCityDetail = document.querySelector("#currentWeatherDetail");
 const searchBox = document.querySelector('#searchBox');
+const cityList = document.querySelector('#previouslySearched');
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 // get current city weather
@@ -71,7 +72,6 @@ const weatherCall = function(cityName) {
 }
 
 // function to execute when new city is searched
-
 searchBox.querySelector('button').addEventListener('click', (ev) => {
     ev.preventDefault();
     console.log(this);
