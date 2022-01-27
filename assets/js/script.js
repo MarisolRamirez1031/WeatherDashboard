@@ -30,6 +30,17 @@ const pushedCity = (cityName, coord) => {
         localStorage['cityList'] = JSON.stringify(citySearch);
 }
 
+const updateHistory = () => {
+    let citySearch = getCities();
+    cityList.innerHTML = '';
+    for (a of citySearch) {
+        let b = document.createElement('button');
+            b.textContent = a.name;
+            b.classList.add('cityBttn');
+            cityList.appendChild(b);
+    }
+}
+
     const uviScale = (uv) => {
         if (uv <3) {
             return 'low';
@@ -40,6 +51,9 @@ const pushedCity = (cityName, coord) => {
             return 'severe';
         }
     }
+
+    updateHistory();
+
 
 // get current city weather
 const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
@@ -93,6 +107,20 @@ const weatherCall = function(cityName) {
         })
 }
 
+
+cityList.addEventListener('click', ev => {
+    ev.preventDefault();
+        if(ev.target.classList.contains('cityBttn')) {
+            let citySearch = getCities();
+            let x = citySearch.find(a => a.name === ev.target.textContent);
+            forecast(x.coords.lat, x.coords.lon)
+            .then(blob => {
+                let a = blob.current;
+                displayCurrentWeather(x.name, Date(), a.temp, a.pWind, a.humidity, a.uvi);
+            })
+        }
+})
+
 // function to execute when new city is searched
 searchBox.querySelector('button').addEventListener('click', (ev) => {
     ev.preventDefault();
@@ -101,6 +129,8 @@ searchBox.querySelector('button').addEventListener('click', (ev) => {
     console.log(`search city: ${searchedCity}`);
     weatherCall(searchedCity)
     .then(json => {
+        pushedCity(json.name, json.coord);
+        updateHistory();
         return forecast(json.coord.lat, json.coord.lon)
     }).then(blob => {
         let a = blob.current;
