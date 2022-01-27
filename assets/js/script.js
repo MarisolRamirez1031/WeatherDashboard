@@ -41,6 +41,10 @@ const updateHistory = () => {
     }
 }
 
+updateHistory();
+    
+
+
     const uviScale = (uv) => {
         if (uv <3) {
             return 'low';
@@ -51,9 +55,6 @@ const updateHistory = () => {
             return 'severe';
         }
     }
-
-    updateHistory();
-
 
 // get current city weather
 const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
@@ -108,18 +109,25 @@ const weatherCall = function(cityName) {
 }
 
 
+
+const showForecasted = (lat, lon, cityName) => {
+    forecast(lat, lon).then(blob => {
+        let a = blob.current;
+        displayCurrentWeather(cityName, Date(), a.temp, a.wind_speed, a.humidity, a.uvi);
+    });
+}
 cityList.addEventListener('click', ev => {
     ev.preventDefault();
         if(ev.target.classList.contains('cityBttn')) {
             let citySearch = getCities();
             let x = citySearch.find(a => a.name === ev.target.textContent);
-            forecast(x.coords.lat, x.coords.lon)
-            .then(blob => {
-                let a = blob.current;
-                displayCurrentWeather(x.name, Date(), a.temp, a.pWind, a.humidity, a.uvi);
-            })
+            showForecasted(x.coords.lat, x.coords.lon, x.name);
         }
 })
+
+
+
+
 
 // function to execute when new city is searched
 searchBox.querySelector('button').addEventListener('click', (ev) => {
@@ -131,9 +139,6 @@ searchBox.querySelector('button').addEventListener('click', (ev) => {
     .then(json => {
         pushedCity(json.name, json.coord);
         updateHistory();
-        return forecast(json.coord.lat, json.coord.lon)
-    }).then(blob => {
-        let a = blob.current;
-        displayCurrentWeather(searchedCity, Date(), a.temp, a.wind_speed, a.humidity, a.uvi);
-    })
+        showForecasted(json.coord.lat, json.coord.lon, json.name);
+    });
 });
