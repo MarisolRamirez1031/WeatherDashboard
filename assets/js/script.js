@@ -52,6 +52,7 @@ const forecast = ( lat, lon ) => {
         ).then(json => {
             console.log(json);
             lastCall = json;
+            return json;
         })
 }
 
@@ -65,13 +66,25 @@ const weatherCall = function(cityName) {
         .then (o => {
             lastCall = o;
             console.log(o);
+            return o;
         })
 }
 
-
-
-
 // function to execute when new city is searched
+
+searchBox.querySelector('button').addEventListener('click', (ev) => {
+    ev.preventDefault();
+    console.log(this);
+    let searchedCity = searchBox.querySelector('input').value;
+    console.log(`search city: ${searchedCity}`);
+    weatherCall(searchedCity)
+    .then(json => {
+        return forecast(json.coord.lat, json.coord.lon)
+    }).then(blob => {
+        let a = blob.current;
+        displayCurrentWeather(searchedCity, Date(), a.temp, a.wind_speed, a.humidity, a.uvi);
+    })
+});
 
 
 // get current city weather
