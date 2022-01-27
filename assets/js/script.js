@@ -6,6 +6,7 @@ const currentCityDetail = document.querySelector("#currentWeatherDetail");
 const searchBox = document.querySelector('#searchBox');
 const cityList = document.querySelector('#previouslySearched');
 const forecastedList = document.querySelector('#forecastedDays')
+const momentMDY = 'M/DD/YYYY';
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 
@@ -111,7 +112,7 @@ const weatherCall = function(cityName) {
 const showDailyWeatherR = days => {
     for (x of days) {
         let cards = document.createElement('div');
-        cards.innerHTML = `<h4>${Date(x.dt)}<h4>
+        cards.innerHTML = `<h4>${moment(x.dt * 1000).format(momentMDY)}<h4>
         <p><img src=https://openweathermap.org/img/w/${x.weather[0].icon}.png</p>
         <p>Temp: ${x.temp.day}</p>
         <p>Wind: ${x.wind_speed}</p>
@@ -123,7 +124,7 @@ const showDailyWeatherR = days => {
 const showForecasted = (lat, lon, cityName) => {
     forecast(lat, lon).then(blob => {
         let a = blob.current;
-        displayCurrentWeather(cityName, Date(), a.temp, a.wind_speed, a.humidity, a.uvi);
+        displayCurrentWeather(cityName, moment().format(momentMDY), a.temp, a.wind_speed, a.humidity, a.uvi);
         showDailyWeatherR(blob.daily.splice(1,6));
     });
 }
