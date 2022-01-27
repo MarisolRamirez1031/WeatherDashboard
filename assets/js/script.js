@@ -2,13 +2,18 @@ const apiKey = "194f452e9fcc6891d991dfc10caa1c42";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 const weather = "weather?";
 const onecall = "onecall?";
-const currentCity = document.querySelector("#currentWeather")
+const currentCityDetail = document.querySelector("#currentWeatherDetail")
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 // get current city weather
 
 let lastCall = null;
 const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
+    let wHead = document.querySelector('#currentWeatherHeader');
+    wHead.textContent = `${cityName} (${date})`;
+    let pTemp = document.createElement('p');
+    pTemp.textContent = `Temp: ${temp}°F`;
+    let pWind = document.querySelector()
 }
 
 const forecast = ( lat, lon ) => {
