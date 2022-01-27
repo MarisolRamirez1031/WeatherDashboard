@@ -7,9 +7,28 @@ const searchBox = document.querySelector('#searchBox');
 const cityList = document.querySelector('#previouslySearched');
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
-// get current city weather
 
 let lastCall = null;
+
+const history = () => {
+    localStorage['cityList'] = JSON.stringify([]);
+    cityList.innerHTML = '';
+}
+
+if (localStorage.getItem('cityList') === null) {
+    history();
+}
+
+const getCities = () => JSON.parse(localStorage['cityList']);
+
+const hadCity = (cityName) => getCities().some(a => a.name === cityName);
+
+const pushedCity = (cityName, coord) => {
+    let citySearch = getCities();
+    if(citySearch.every(a => a.name !== cityName))
+    citySearch.push({name: cityName, coords: coord});
+        localStorage['cityList'] = JSON.stringify(citySearch);
+}
 
     const uviScale = (uv) => {
         if (uv <3) {
@@ -22,6 +41,7 @@ let lastCall = null;
         }
     }
 
+// get current city weather
 const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
     let wHead = document.querySelector('#currentWeatherHeader');
     wHead.textContent = `${cityName} (${date})`;
@@ -40,6 +60,8 @@ const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv)
         currentCityDetail.appendChild(pHumidity);
         currentCityDetail.appendChild(pUV);
 }
+
+// get forcast and uv index
 
 const forecast = ( lat, lon ) => {
     return fetch(apiUrl + onecall +
@@ -85,10 +107,3 @@ searchBox.querySelector('button').addEventListener('click', (ev) => {
         displayCurrentWeather(searchedCity, Date(), a.temp, a.wind_speed, a.humidity, a.uvi);
     })
 });
-
-
-// get current city weather
-
-
-// get forcast and uv index
-
