@@ -22,14 +22,15 @@
 
 <br>
 
-<main class="container">
+<main class="container" id="body-container">
     <div class="row">
-        <div class="col-sm-3">
-            <h2>Search for a City</h2>
+        <div class="col-sm-4" id="sidebar-search">
+            <h4>Search for a City</h4>
             <div class="input-group">
                 <form id="cityform">
-                    <input type="text" name="city" id="city" placeholder="Austin" class="form-input" autofocus="true"/>
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    <input type="search" name="city" id="city" placeholder="Search" class="form-input" autofocus="true"/>
+                    <button type="submit" class="btn btn-primary">Search <i class="bi bi-search"></i></button>
+                    <button type="button" class="btn btn-secondary" id="clear-btn">Clear history</button>
                 </form>
             </div>
             <div class ="btn-group-vertical" id="buttons">
