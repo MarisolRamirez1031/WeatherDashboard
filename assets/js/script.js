@@ -5,6 +5,7 @@ const onecall = "onecall?";
 const currentCityDetail = document.querySelector("#currentWeatherDetail");
 const searchBox = document.querySelector('#searchBox');
 const cityList = document.querySelector('#previouslySearched');
+const forecastedList = document.querySelector('#forecastedDays')
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 
@@ -42,7 +43,6 @@ const updateHistory = () => {
 }
 
 updateHistory();
-    
 
 
     const uviScale = (uv) => {
@@ -108,12 +108,23 @@ const weatherCall = function(cityName) {
         })
 }
 
-
-
+const showDailyWeatherR = days => {
+    for (x of days) {
+        let cards = document.createElement('div');
+        cards.innerHTML = `<h4>${Date(x.dt)}<h4>
+        <p><img src=https://openweathermap.org/img/w/${x.weather[0].icon}.png</p>
+        <p>Temp: ${x.temp.day}</p>
+        <p>Wind: ${x.wind_speed}</p>
+        <p>Humidity: ${x.humidity} %</p>
+        <p>UV Index: ${x.uvi}</p>`;
+        forecastedList.appendChild(cards);
+    }
+}
 const showForecasted = (lat, lon, cityName) => {
     forecast(lat, lon).then(blob => {
         let a = blob.current;
         displayCurrentWeather(cityName, Date(), a.temp, a.wind_speed, a.humidity, a.uvi);
+        showDailyWeatherR(blob.daily.splice(1,6));
     });
 }
 cityList.addEventListener('click', ev => {
@@ -124,10 +135,6 @@ cityList.addEventListener('click', ev => {
             showForecasted(x.coords.lat, x.coords.lon, x.name);
         }
 })
-
-
-
-
 
 // function to execute when new city is searched
 searchBox.querySelector('button').addEventListener('click', (ev) => {
