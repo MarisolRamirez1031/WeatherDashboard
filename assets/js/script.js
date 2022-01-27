@@ -2,8 +2,8 @@ const apiKey = "194f452e9fcc6891d991dfc10caa1c42";
 const apiUrl = "https://api.openweathermap.org/data/2.5/";
 const weather = "weather?";
 const onecall = "onecall?";
-const currentCityDetail = document.querySelector("#currentWeatherDetail")
-const searchBox = document.querySelectorAll('#searchBox')
+const currentCityDetail = document.querySelector("#currentWeatherDetail");
+const searchBox = document.querySelector('#searchBox');
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 // get current city weather
