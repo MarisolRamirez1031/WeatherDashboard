@@ -6,9 +6,26 @@ const currentCity = document.querySelector("#currentWeather")
 // get current city weather
 
 let lastCall = null;
-const displayCurrentWeather = function(cityName, date, time, wind, humidity, uv) {
-    ;
+const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
 }
+
+const forecast = ( )
+
+const weatherCall = function(cityName) {
+    return fetch(apiUrl + weather +
+        [
+            `q=${cityName}`,
+            `appid=${apiKey}`
+        ].join('&'))
+        .then( res => res.json())
+        .then (o => {
+            lastCall = o;
+            console.log(o);
+        })
+}
+
+
+
 
 var getCurrentCity = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=194f452e9fcc6891d991dfc10caa1c42";
