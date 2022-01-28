@@ -50,6 +50,7 @@ updateHistory();
 
 
     const uviScale = (uv) => 
+    `<span class='uv-${(uv<3)?'low':(uv<6)?'moderate':'severe'}'>${uv}</span>`
 
 // get current city weather
 const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
