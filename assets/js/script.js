@@ -49,16 +49,7 @@ const updateHistory = () => {
 updateHistory();
 
 
-    const uviScale = (uv) => {
-        if (uv <3) {
-            return 'low';
-        }   else
-        if (uv <6) {
-            return 'moderate';
-        }   else {
-            return 'severe';
-        }
-    }
+    const uviScale = (uv) => 
 
 // get current city weather
 const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv) {
@@ -71,7 +62,7 @@ const displayCurrentWeather = function(cityName, date, temp, wind, humidity, uv)
     let pHumidity = document.createElement('p');
     pHumidity.textContent = `Humidity: ${humidity} %`;
     let pUV = document.createElement('p');
-    pUV.textContent = `UV Index: ${uv}`;
+    pUV.innerHTML = `UV Index: ${uviScale(uv)}`;
 
         currentCityDetail.innerHTML = '';
         currentCityDetail.appendChild(pTemp);
