@@ -5,6 +5,7 @@ const onecall = "onecall?";
 const currentCityDetail = document.querySelector("#currentWeatherDetail");
 const searchBox = document.querySelector('#searchBox');
 const cityList = document.querySelector('#previouslySearched');
+const localStorageKey = 'cities';
 const forecastedList = document.querySelector('#forecastedDays')
 const momentMDY = 'M/DD/YYYY';
 
@@ -13,15 +14,15 @@ const momentMDY = 'M/DD/YYYY';
 let lastCall = null;
 
 const history = () => {
-    localStorage['cityList'] = JSON.stringify([]);
+    localStorage[localStorageKey] = JSON.stringify([]);
     cityList.innerHTML = '';
 }
 
-if (localStorage.getItem('cityList') === null) {
+if (localStorage.getItem(localStorageKey) === null) {
     history();
 }
 
-const getCities = () => JSON.parse(localStorage['cityList']);
+const getCities = () => JSON.parse(localStorage[localStorageKey]);
 
 const hadCity = (cityName) => getCities().some(a => a.name === cityName);
 
@@ -29,7 +30,7 @@ const pushedCity = (cityName, coord) => {
     let citySearch = getCities();
     if(citySearch.every(a => a.name !== cityName))
     citySearch.push({name: cityName, coords: coord});
-        localStorage['cityList'] = JSON.stringify(citySearch);
+        localStorage[localStorageKey] = JSON.stringify(citySearch);
 }
 
 const updateHistory = () => {
@@ -152,3 +153,9 @@ searchBox.querySelector('button').addEventListener('click', (ev) => {
         showForecasted(json.coord.lat, json.coord.lon, json.name);
     });
 });
+
+
+// clear button functionality
+document.querySelector('#clrBtn').addEventListener('click', ev => {
+    history();
+})
