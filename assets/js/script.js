@@ -120,7 +120,7 @@ const showForecasted = (lat, lon, cityName) => {
     forecast(lat, lon).then(blob => {
         let a = blob.current;
         displayCurrentWeather(cityName, moment().format(momentMDY), a.temp, a.wind_speed, a.humidity, a.uvi);
-        showDailyWeatherR(blob.daily.splice(1,6));
+        showDailyWeatherR(blob.daily.slice(1,6));
     });
 }
 cityList.addEventListener('click', ev => {
