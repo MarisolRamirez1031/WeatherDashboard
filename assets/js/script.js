@@ -105,8 +105,10 @@ const weatherCall = function(cityName) {
 }
 
 const showDailyWeatherR = days => {
+    forecastedList.innerHTML = '';
     for (x of days) {
         let cards = document.createElement('div');
+        cards.classList.add('fiveDayCard');
         cards.innerHTML = `<h4>${moment(x.dt * 1000).format(momentMDY)}<h4>
         <p><img src=https://openweathermap.org/img/w/${x.weather[0].icon}.png</p>
         <p class="bi bi-thermometer-sun"> Temp: ${x.temp.day}</p>

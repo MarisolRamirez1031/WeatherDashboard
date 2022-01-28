@@ -1,6 +1,48 @@
-.header-text {
+body {
+    max-width: 1280px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin:auto;
+  }
+
+header {
+    background-color: rgb(1, 71, 112);
     color: aliceblue;
     text-align: center!important;
+}
+
+main {
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+#currentWeatherDetail, #currentWeatherHeader {
+    margin-left: 10px;
+}
+
+#currentWeatherDetail {
+    border: 1px solid black;
+}
+
+#searchBtn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#disp {
+    margin-right: 40px;
+}
+
+#forecastedDays {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fiveDayCard {
+    background-color: cadetblue;
+    color: red;
+    box-sizing: border-box;
+    padding: 15px;
 }
 
 .footerbg {
