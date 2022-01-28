@@ -109,10 +109,10 @@ const showDailyWeatherR = days => {
         let cards = document.createElement('div');
         cards.innerHTML = `<h4>${moment(x.dt * 1000).format(momentMDY)}<h4>
         <p><img src=https://openweathermap.org/img/w/${x.weather[0].icon}.png</p>
-        <p>Temp: ${x.temp.day}</p>
-        <p>Wind: ${x.wind_speed}</p>
-        <p>Humidity: ${x.humidity} %</p>
-        <p>UV Index: ${x.uvi}</p>`;
+        <p class="bi bi-thermometer-sun"> Temp: ${x.temp.day}</p>
+        <p class="bi bi-wind"> Wind: ${x.wind_speed}</p>
+        <p class="bi bi-moisture"> Humidity: ${x.humidity} %</p>
+        <p class="bi bi-sun-fill"> UV Index: ${x.uvi}</p>`;
         forecastedList.appendChild(cards);
     }
 }
