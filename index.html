@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,123 +8,51 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="icon" type="image/x-icon" href="./assets/images/m.png">
     <link rel="stylesheet" href="./assets/css/stylesheet.css">
-    
     <title>Weather Dashboard</title>
 </head>
 
+
 <body>
-<header class="header-text">
-    <nav class="navbar navbar-dark bg-dark navbar-expand">
-        <h1 class="navbar-brand">Weather Dashboard</h1>
-        <i class="bi bi-cloud"></i>
-    </nav>
-</header>
+    <header>
+        <h1>
+            Weather Dashboard
+        </h1>
+    </header>
 
-<br>
-
-<main class="container" id="body-container">
-    <div class="row">
-        <div class="col-sm-4" id="sidebar-search">
-            <h4>Search for a City</h4>
-            <div class="input-group">
-                <form id="cityform">
-                    <input type="search" name="city" id="city" placeholder="Search" class="form-input" autofocus="true"/>
-                    <button type="submit" class="btn btn-primary">Search <i class="bi bi-search"></i></button>
-                    <button type="button" class="btn btn-secondary" id="clear-btn">Clear history</button>
-                </form>
+    <main>
+        <section id="search">
+            <h2>
+                Search for a City
+            </h2>
+            <form id="searchBox">
+                <input type="text" placeholder="Austin">
+                <button type="submit" class="btn btn-primary" id="searchButton">Search <i class="bi bi-search"></i></button>
+            </form>
+            <button type="button" class="btn btn-secondary" id="clrBtn">Clear Search History</button>
+            <div>
+                <ul id ="previouslySearched"></ul>
             </div>
-            <div class ="btn-group-vertical" id="buttons">
-        </div>
-    </div>
+        </section>
 
-<!-- Current city that was searched -->
-    <div class="col-sm-9" id="currentWeather-containter">
-        <div class="row containter">
-            <div class="col-sm-6">
-                <h3><span id="currentCity-search"></span><span id="date"></span></h3>
-                <p><i class="bi bi-thermometer-sun"></i> Temperature: <span id="temperature"></span>°F</p>
-                <p><i class="bi bi-moisture"></i> Humidity:<span id="humidity"></span>%</p>
-                <p><i class="bi bi-wind"></i> Wind Speed: <span id="windspeed"></span>MPH</p>
-                <p><i class="bi bi-sun-fill"></i> UV Index: <span id="uvi"></span></p>
+        <section id="disp">
+            <div id="currentWeather">
+                <h2 id="currentWeatherHeader"></h2>
+                <div id="currentWeatherDetail"></div>
             </div>
-        </div>
-    </div>
-
-<!-- Day 1 -->
-    <div class="container" id="future-conditions">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card card-block">
-                    <h4 class="card-title" id="day1">Date</h4>
-                    <img id="img1" src="" alt="weather icon">
-                    <p class="card-text"><i class="bi bi-thermometer-sun"></i> Temperature: <span id="temp1"></span> °F</p>
-                    <p class="card-text"><i class="bi bi-moisture"></i> Humidity:<span id="humidity1"></span> %</p>
-                    <p class="card-text"><i class="bi bi-wind"></i> Wind Speed:<span id="humidity1"></span> MPH</p>
-                    <p class="card-text"><i class="bi bi-sun-fill"></i> UV Index:<span id="humidity1"></span></p>
-                </div>
+            <div id="forecasted">
+                <h2>
+                    5 Day Forecast:
+                </h2>
+                <div id="forecastedDays"></div>
             </div>
-        </div>
-    </div>
-
-<!-- Day 2-->
-            <div class="col-sm-4">
-                <div class="card card-block">
-                    <h4 class="card-title" id="day2">Date</h4>
-                    <img id="img2" src="" alt="weather icon">
-                    <p class="card-text"><i class="bi bi-thermometer-sun"></i> Temperature: <span id="temp1"></span> °F</p>
-                    <p class="card-text"><i class="bi bi-moisture"></i> Humidity:<span id="humidity1"></span> %</p>
-                    <p class="card-text"><i class="bi bi-wind"></i> Wind Speed:<span id="humidity1"></span> MPH</p>
-                    <p class="card-text"><i class="bi bi-sun-fill"></i> UV Index:<span id="humidity1"></span></p>
-                </div>
-            </div>
+        </section>
+    </main>
+    <footer class="footerbg">
+        <h3>❤️🌻 Made by Marisol Ramirez <i class="bi bi-flower1"></i><i class="bi bi-flower2"></i></h3>
+    </footer>
 
 
-<!-- Day 3-->
-
-            <div class="col-sm-4">
-                <div class="card card-block">
-                    <h4 class="card-title" id="day3">Date</h4>
-                    <img id="img3" src="" alt="weather icon">
-                    <p class="card-text"><i class="bi bi-thermometer-sun"></i> Temperature: <span id="temp1"></span> °F</p>
-                    <p class="card-text"><i class="bi bi-moisture"></i> Humidity:<span id="humidity1"></span> %</p>
-                    <p class="card-text"><i class="bi bi-wind"></i> Wind Speed:<span id="humidity1"></span> MPH</p>
-                    <p class="card-text"><i class="bi bi-sun-fill"></i> UV Index:<span id="humidity1"></span></p>
-                </div>
-            </div>
-
-<!-- Day 4 -->
-
-            <div class="col-sm-4">
-                <div class="card card-block">
-                    <h4 class="card-title" id="day4">Date</h4>
-                    <img id="img4" src="" alt="weather icon">
-                    <p class="card-text"><i class="bi bi-thermometer-sun"></i> Temperature: <span id="temp1"></span> °F</p>
-                    <p class="card-text"><i class="bi bi-moisture"></i> Humidity:<span id="humidity1"></span> %</p>
-                    <p class="card-text"><i class="bi bi-wind"></i> Wind Speed:<span id="humidity1"></span> MPH</p>
-                    <p class="card-text"><i class="bi bi-sun-fill"></i> UV Index:<span id="humidity1"></span></p>
-                </div>
-            </div>
-
-<!-- Day 5-->
-
-            <div class="col-sm-4">
-                <div class="card card-block">
-                    <h4 class="card-title" id="day5">Date</h4>
-                    <img id="img5" src="" alt="weather icon">
-                    <p class="card-text"><i class="bi bi-thermometer-sun"></i> Temperature: <span id="temp1"></span> °F</p>
-                    <p class="card-text"><i class="bi bi-moisture"></i> Humidity:<span id="humidity1"></span> %</p>
-                    <p class="card-text"><i class="bi bi-wind"></i> Wind Speed:<span id="humidity1"></span> MPH</p>
-                    <p class="card-text"><i class="bi bi-sun-fill"></i> UV Index:<span id="humidity1"></span></p>
-                </div>
-            </div>
-</main>
-
-<br>
-
-<footer class="footerbg">
-    <h3>❤️🌻 Made by Marisol Ramirez <i class="bi bi-flower1"></i><i class="bi bi-flower2"></i></h3>
-</footer>
-
-<script src="./assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
