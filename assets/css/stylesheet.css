@@ -5,7 +5,7 @@ body {
   }
 
 header {
-    background-color: rgb(1, 71, 112);
+    background-color: #114B5F;
     color: aliceblue;
     text-align: center!important;
 }
@@ -24,9 +24,45 @@ main {
     border: 1px solid black;
 }
 
-#searchBtn {
-    margin-top: 5px;
+#search {
+    margin-right: 25px;
+}
+
+#searchButton {
+    margin-top: 10px;
     margin-bottom: 5px;
+}
+
+#clrBtn {
+    margin-top: 5px;
+}
+
+.cityBttn {
+    color: black;
+    background-color: cadetblue;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    height: 2em;
+    box-sizing: border-box;
+    margin-top: 0.75em;
+}
+
+#searchBox input {
+    width: 100%;
+    height: 2em;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    overflow: auto;
+    border-top: .5px solid black;
+    margin-top: 5px;
 }
 
 #disp {
@@ -39,15 +75,15 @@ main {
 }
 
 .fiveDayCard {
-    background-color: cadetblue;
-    color: red;
+    background-color: #9da3a4;
+    color: black;
     box-sizing: border-box;
     padding: 15px;
 }
 
 .footerbg {
-    background-color: #343a40;
-    color: aliceblue;
+    background-color: #db7f8e;
+    color: black;
     text-align: center;
     margin-top: 15px;
     padding: 15px 15px 15px 15px;
